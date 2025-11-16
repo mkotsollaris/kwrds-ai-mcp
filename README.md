@@ -27,7 +27,7 @@ Model Context Protocol server for [kwrds.ai](https://www.kwrds.ai) keyword resea
          "command": "/ABSOLUTE/PATH/TO/kwrds-ai-mcp/venv/bin/python",
          "args": ["/ABSOLUTE/PATH/TO/kwrds-ai-mcp/run_server.py"],
          "env": {
-           "KWRDS_API_KEY": "your-api-key-here"
+           "KWRDS_AI_API_KEY": "your-api-key-here"
          }
        }
      }
