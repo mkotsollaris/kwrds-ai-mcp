@@ -198,5 +198,48 @@ def get_tool_definitions():
                 },
                 "required": ["api_key"]
             }
+        },
+
+        "topic_research_create": {
+            "name": "topic_research_create",
+            "description": "Create a topic research job that analyzes a topic and generates comprehensive keyword research including subtopics, search volumes, traffic potential, and conversion estimates. Returns a job ID for tracking.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "topic": {"type": "string", "description": "Main research topic (e.g., 'figma', 'vegan recipes', 'electric cars')"},
+                    "search_country": {"type": "string", "description": "Country code (default: 'en-US')", "default": "en-US"},
+                    "max_children": {"type": "integer", "description": "Number of subtopics to research (1-50, default: 10)", "minimum": 1, "maximum": 50, "default": 10},
+                    "manual_pages": {"type": "array", "items": {"type": "string"}, "description": "Optional custom subtopics array to research instead of auto-generated ones"},
+                    "traffic_rate": {"type": "number", "description": "Traffic capture rate (0.0-1.0, default: 0.10)", "minimum": 0.0, "maximum": 1.0, "default": 0.10},
+                    "conversion_rate": {"type": "number", "description": "Conversion rate (0.0-1.0, default: 0.04)", "minimum": 0.0, "maximum": 1.0, "default": 0.04},
+                    "api_key": {"type": "string", "description": "Your kwrds.ai API key"}
+                },
+                "required": ["topic", "api_key"]
+            }
+        },
+
+        "topic_research_status": {
+            "name": "topic_research_status",
+            "description": "Check the status of a topic research job and retrieve results when complete. Returns job status, keyword summary, search volumes, traffic potential, conversions, and Excel report download URL.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "job_id": {"type": "string", "description": "The job ID returned from topic_research_create"},
+                    "api_key": {"type": "string", "description": "Your kwrds.ai API key"}
+                },
+                "required": ["job_id", "api_key"]
+            }
+        },
+
+        "topic_research_list": {
+            "name": "topic_research_list",
+            "description": "List all topic research jobs for your account, including their status and basic information.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "api_key": {"type": "string", "description": "Your kwrds.ai API key"}
+                },
+                "required": ["api_key"]
+            }
         }
     } 
