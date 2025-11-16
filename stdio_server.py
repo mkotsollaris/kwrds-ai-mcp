@@ -24,16 +24,17 @@ class KwrdsApiMCPServer:
     def __init__(self):
         self.api_base_url = "https://keywordresearch.api.kwrds.ai"
         self.paa_base_url = "https://paa.api.kwrds.ai"
-        
+        self.workflow_base_url = "https://workflow.api.kwrds.ai"
+
         # Get API key from environment
         self.api_key = (
-            os.getenv('KWRDS_API_KEY') or 
+            os.getenv('KWRDS_API_KEY') or
             os.getenv('API_KEY') or
             os.getenv('KWRDS_AI_API_KEY')
         )
-        
+
         # Initialize handlers
-        self.keyword_handlers = KeywordHandlers(self.api_base_url)
+        self.keyword_handlers = KeywordHandlers(self.api_base_url, self.workflow_base_url)
         self.analysis_handlers = AnalysisHandlers(self.api_base_url, self.paa_base_url)
         self.ai_handlers = AIHandlers(self.api_base_url)
         
@@ -118,7 +119,15 @@ class KwrdsApiMCPServer:
             return self.ai_handlers.handle_ai(arguments, api_key)
         elif tool_name == "ai_content":
             return self.ai_handlers.handle_ai_content(arguments, api_key)
-            
+
+        # Topic research tools
+        elif tool_name == "topic_research_create":
+            return self.keyword_handlers.handle_topic_research_create(arguments, api_key)
+        elif tool_name == "topic_research_status":
+            return self.keyword_handlers.handle_topic_research_status(arguments, api_key)
+        elif tool_name == "topic_research_list":
+            return self.keyword_handlers.handle_topic_research_list(arguments, api_key)
+
         else:
             raise ValueError(f"Unknown tool: {tool_name}")
 

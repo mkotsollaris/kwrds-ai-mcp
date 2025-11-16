@@ -10,18 +10,22 @@ Model Context Protocol server for [kwrds.ai](https://www.kwrds.ai) keyword resea
 
 1. **Get API key** from [kwrds.ai](https://www.kwrds.ai/api/documentation/API_Key_Setup)
 
-2. **Install dependencies**:
+2. **Clone and setup**:
    ```bash
+   git clone https://github.com/yourusername/kwrds-ai-mcp
+   cd kwrds-ai-mcp
+   python3 -m venv venv
+   source venv/bin/activate
    pip install -r requirements.txt
    ```
 
-3. **Add to an MCP Client (Claude/Cursor/Chatgpt/etc.) Desktop config** (`~/Library/Application Support/Claude/claude_desktop_config.json`):
+3. **Add to Claude Desktop config** (`~/Library/Application Support/Claude/claude_desktop_config.json`):
    ```json
    {
      "mcpServers": {
        "kwrds-ai": {
-         "command": "python3",
-         "args": ["/path/to/this/project/run_server.py"],
+         "command": "/ABSOLUTE/PATH/TO/kwrds-ai-mcp/venv/bin/python",
+         "args": ["/ABSOLUTE/PATH/TO/kwrds-ai-mcp/run_server.py"],
          "env": {
            "KWRDS_API_KEY": "your-api-key-here"
          }
@@ -29,10 +33,10 @@ Model Context Protocol server for [kwrds.ai](https://www.kwrds.ai) keyword resea
      }
    }
    ```
-   
-   **Replace `/path/to/this/project/` with your actual project path**
 
-4. **Restart MCP Client**
+   **Replace `/ABSOLUTE/PATH/TO/kwrds-ai-mcp/` with your actual project path** (use `pwd` to get it)
+
+4. **Restart Claude Desktop**
 
 ## Usage
 
