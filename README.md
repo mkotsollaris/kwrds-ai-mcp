@@ -51,6 +51,7 @@ Ask your MCP Client:
 ## Tools Available
 
 - Keyword research with volumes & competition
+- Topic research
 - SERP analysis & ranking data
 - People Also Ask questions
 - AI content generation
