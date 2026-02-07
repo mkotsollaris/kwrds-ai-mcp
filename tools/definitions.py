@@ -18,7 +18,13 @@ def get_tool_definitions():
                     "search_country": {"type": "string", "description": "Country and language code (e.g., 'en-US', 'es-ES', 'fr-FR')"},
                     "api_key": {"type": "string", "description": "Your kwrds.ai API key"},
                     "limit": {"type": "integer", "description": "Limit number of results returned", "minimum": 1},
-                    "version": {"type": "string", "description": "API version (default: '1')", "default": "1"}
+                    "version": {"type": "string", "description": "API version (default: '1')", "default": "1"},
+                    "vendor": {
+                        "type": "string",
+                        "description": "Search vendor for keyword discovery (default: 'google')",
+                        "enum": ["google", "bing", "yahoo", "baidu", "yandex", "google_news", "google_shopping", "google_images", "youtube", "amazon", "ebay", "perplexity", "chatgpt", "reddit", "x", "tiktok"],
+                        "default": "google"
+                    }
                 },
                 "required": ["search_question", "search_country", "api_key"]
             }

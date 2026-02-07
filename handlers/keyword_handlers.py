@@ -39,6 +39,8 @@ class KeywordHandlers:
             data["limit"] = min(args["limit"], 10)  # Cap at 10 for MCP
         else:
             data["limit"] = 10  # Default limit for MCP
+        if "vendor" in args:
+            data["vendor"] = args["vendor"]
         response = make_api_request(url, headers, data)
         return limit_response_size(response, max_items=10)
 
